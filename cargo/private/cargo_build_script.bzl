@@ -142,6 +142,7 @@ def get_cc_compile_args_and_env(cc_toolchain, feature_configuration):
         action_name = ACTION_NAMES.c_compile,
         variables = compile_variables,
     )
+    print("cc_c_args", cc_c_args)
     cc_cxx_args = cc_common.get_memory_inefficient_command_line(
         feature_configuration = feature_configuration,
         action_name = ACTION_NAMES.cpp_compile,
