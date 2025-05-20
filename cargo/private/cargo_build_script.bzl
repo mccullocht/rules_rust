@@ -677,7 +677,7 @@ cargo_build_script = rule(
     fragments = ["cpp"],
     toolchains = [
         str(Label("//rust:toolchain_type")),
-        "@bazel_tools//tools/cpp:toolchain_type"),
+        "@bazel_tools//tools/cpp:toolchain_type",
     ],
 )
 
