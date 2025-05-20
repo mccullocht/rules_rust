@@ -345,7 +345,7 @@ def _cargo_build_script_impl(ctx):
 
     toolchain_tools = [toolchain.all_files]
 
-    cc_toolchain = find_cpp_toolchain(ctx)
+    # XXX cc_toolchain = find_cpp_toolchain(ctx)
 
     env = dict({})
 
@@ -676,7 +676,7 @@ cargo_build_script = rule(
     fragments = ["cpp"],
     toolchains = [
         str(Label("//rust:toolchain_type")),
-        "@bazel_tools//tools/cpp:toolchain_type",
+        str(Label("@bazel_tools//tools/cpp:toolchain_type")),
     ],
 )
 

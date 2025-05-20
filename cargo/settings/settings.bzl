@@ -11,7 +11,7 @@ def experimental_symlink_execroot():
     """
     bool_flag(
         name = "experimental_symlink_execroot",
-        build_setting_default = True,
+        build_setting_default = False,
     )
 
 def incompatible_runfiles_cargo_manifest_dir():
