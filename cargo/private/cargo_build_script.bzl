@@ -196,10 +196,10 @@ def _pwd_flags_isystem(args):
     res = []
     for arg in args:
         s, pre, path = arg.partition("-isystem")
-	if s == "" and not paths.is_absolute(path):
-	    res.append("-isystem${{pwd}}/{}".format(path)
+        if s == "" and not paths.is_absolute(path):
+            res.append("-isystem${{pwd}}/{}".format(path)
         else:
-	    res.append(arg)
+            res.append(arg)
 
     return res
 
