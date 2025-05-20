@@ -414,6 +414,7 @@ def _cargo_build_script_impl(ctx):
             feature_configuration = feature_configuration,
             action_name = ACTION_NAMES.c_compile,
         )
+	env["CCTEST"] = cc_toolchain.tool_paths["gcc"]
         env["CXX"] = cc_common.get_tool_for_action(
             feature_configuration = feature_configuration,
             action_name = ACTION_NAMES.cpp_compile,
@@ -675,7 +676,7 @@ cargo_build_script = rule(
     },
     fragments = ["cpp"],
     toolchains = [
-        #str(Label("//rust:toolchain_type")),
+        str(Label("//rust:toolchain_type")),
         "@bazel_tools//tools/cpp:toolchain_type"),
     ],
 )
