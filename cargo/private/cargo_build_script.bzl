@@ -184,12 +184,19 @@ def _pwd_flags_isystem(args):
     res = []
     fix_next_arg = False
     for arg in args:
+        if arg.startswith("-isystem"):
+            fix_next_arg = True
+            res.append("-isystem")
+            arg = arg.removeprefix("-isystem")
+            if arg == "":
+                continue
+
         if fix_next_arg and not paths.is_absolute(arg):
             res.append("${{pwd}}/{}".format(arg))
         else:
             res.append(arg)
 
-        fix_next_arg = arg == "-isystem"
+        fix_next_arg = False
 
     return res
 
