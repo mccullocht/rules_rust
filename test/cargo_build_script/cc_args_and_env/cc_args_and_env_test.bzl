@@ -229,6 +229,50 @@ def isystem_absolute_concat_test(name):
         expected_cflags = ["-isystem", "/test/absolute/path"],
     )
 
+def bin_relative_test(name):
+    cargo_build_script_with_extra_cc_compile_flags(
+        name = "%s/cargo_build_script" % name,
+        extra_cc_compile_flags = ["-B", "test/relative/path"],
+    )
+    cc_args_and_env_analysis_test(
+        name = name,
+        target_under_test = "%s/cargo_build_script" % name,
+        expected_cflags = ["-B", "${pwd}/test/relative/path"],
+    )
+
+def bin_absolute_test(name):
+    cargo_build_script_with_extra_cc_compile_flags(
+        name = "%s/cargo_build_script" % name,
+        extra_cc_compile_flags = ["-B", "/test/absolute/path"],
+    )
+    cc_args_and_env_analysis_test(
+        name = name,
+        target_under_test = "%s/cargo_build_script" % name,
+        expected_cflags = ["-B", "/test/absolute/path"],
+    )
+
+def bin_relative_concat_test(name):
+    cargo_build_script_with_extra_cc_compile_flags(
+        name = "%s/cargo_build_script" % name,
+        extra_cc_compile_flags = ["-Btest/relative/path"],
+    )
+    cc_args_and_env_analysis_test(
+        name = name,
+        target_under_test = "%s/cargo_build_script" % name,
+        expected_cflags = ["-B", "${pwd}/test/relative/path"],
+    )
+
+def bin_absolute_concat_test(name):
+    cargo_build_script_with_extra_cc_compile_flags(
+        name = "%s/cargo_build_script" % name,
+        extra_cc_compile_flags = ["-B/test/absolute/path"],
+    )
+    cc_args_and_env_analysis_test(
+        name = name,
+        target_under_test = "%s/cargo_build_script" % name,
+        expected_cflags = ["-B", "/test/absolute/path"],
+    )
+
 def fsanitize_ignorelist_relative_test(name):
     cargo_build_script_with_extra_cc_compile_flags(
         name = "%s/cargo_build_script" % name,
